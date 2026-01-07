@@ -94,7 +94,7 @@ Enables Happy Hour state (MemoryStore + MessagingService) and optionally updates
   "ExpireIn": 3600,           // Optional: Duration in seconds
   "Message": "99% OFF SALE!", // Optional
   "MessageColor": "rainbow",  // Optional
-  "Percentage": 99.0,         // Optional: Triggers set-all-percentage
+  "Percentage": 99,         // Optional: Triggers set-all-percentage
   "Price": 1.0                // Optional: Triggers set-all (if percentage not set)
 }
 ```
@@ -110,11 +110,3 @@ Disables Happy Hour state and restores prices from the source universe.
   "universe_id": 22222222
 }
 ```
-
-## Setup
-
-1.  Set environment variables:
-    *   `ROBLOSECURITY`: Cookie for authentication (required for price updates).
-    *   `OPEN_CLOUD_API_KEY`: API Key for MemoryStore/MessagingService.
-    *   `SOURCE_UNIVERSE_ID`: Default source universe ID for price reference.
-2.  Run server: `uvicorn SetPriceApi:app --reload`
