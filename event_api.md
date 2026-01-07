@@ -4,6 +4,13 @@ This API manages in-game events and messaging for Roblox experiences using Open 
 
 ## Endpoints
 
+### Authentication
+All endpoints require the `x-api-key` header.
+```
+x-api-key: <your_api_key>
+```
+
+
 ### 1. Start Event
 **POST** `/events/start`
 
@@ -62,5 +69,7 @@ Stops a specific event or all active events.
 
 ## Setup
 
-1.  Set `OPEN_CLOUD_API_KEY` environment variable.
+1.  Set environment variables:
+    *   `API_KEY`: Key required for `x-api-key` header to access this API.
+    *   `OPEN_CLOUD_API_KEY`: API Key for MemoryStore/MessagingService.
 2.  Run server: `uvicorn EventApi:app --reload`
