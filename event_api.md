@@ -14,6 +14,7 @@ Starts a specific game event.
 {
   "universe_id": 12345678,
   "event_name": "Alien",  // Options: Alien, Blizzard, Lightning, Rainbow
+  "start_time": 1715000000, // Unix timestamp
   "expire_in": 120        // Optional: Duration in seconds (default: 120)
 }
 ```
@@ -27,7 +28,8 @@ Broadcasts a message to all servers in the universe.
 ```json
 {
   "universe_id": 12345678,
-  "message": "Hello everyone! An event is starting soon."
+  "message": "Hello everyone! An event is starting soon.",
+  "user_id": 987654321    // Optional: Target specific user
 }
 ```
 
@@ -41,7 +43,7 @@ Spawns a special admin item for a specific user.
 {
   "universe_id": 12345678,
   "item_type": "AdminEgg", // Options: AdminEgg, AdminCrate
-  "target_user_id": 987654321
+  "item_count": 1          // Optional: Number of items (default: 1)
 }
 ```
 
@@ -57,3 +59,8 @@ Stops a specific event or all active events.
   "event_name": "Alien"   // Options: Specific event name OR "all"
 }
 ```
+
+## Setup
+
+1.  Set `OPEN_CLOUD_API_KEY` environment variable.
+2.  Run server: `uvicorn EventApi:app --reload`
