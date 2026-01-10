@@ -2,84 +2,73 @@
 
 A minimal line-based scripting language executed by the Runner class to control events, messages, items, and timing across experiences.
 
-Rules:
+**Rules**
 - Commands are case-sensitive
 - Strings must use double quotes
 - Lines execute top to bottom
 - Invalid commands stop execution immediately
 
-Variables:
+**Variables**
 define <name> = <value>
 Examples:
 define count = 3
 define title = "Happy Hour"
 
-Values auto-resolve as numbers, strings, or variables. Variables can be reused later in the script.
+Values automatically resolve as numbers, strings, or variables. Variables can be reused later in the script.
 
-String Expressions:
+**String Expressions**
 String concatenation uses ..
 Unknown variables resolve to an empty string.
 Example:
 print "Hello " .. title
 
-Commands:
+**Commands**
 
-print <expression>
-Outputs text to the console/log.
+**print**
+Syntax: print <expression>
 
-wait <seconds>
-Pauses execution for the given number of seconds.
+**wait**
+Syntax: wait <seconds>
 
-version or v
-Prints the current runner version.
+**version / v**
+Syntax: version
+Syntax: v
 
-item <Egg | Crate | All> [amount]
-Spawns admin items in the map.
-If amount is omitted, defaults to 1.
-All spawns both AdminEgg and AdminCrate.
+**item**
+Syntax: item <ItemName> [amount?]
+ItemName options: Egg | Crate | All
+amount? = optional integer (defaults to 1)
 
-message <expression> [userId]
-Posts a global message across experiences.
-userId is optional and must resolve to a number.
+**message**
+Syntax: message <expression> [userId?]
+userId? = optional number
 
-admin "<eventName>"
-Starts an admin event with the given name.
+**admin**
+Syntax: admin "<eventName>"
 
-admin end "<eventName>"
-Ends the specified admin event.
+**admin end**
+Syntax: admin end "<eventName>"
 
-happyhour "<message>" <color> <durationSeconds> [options]
-Starts a happy hour event.
-Supported options:
-priceset:<number>
-pricepercentage:<number>
+**happyhour**
+Syntax: happyhour "<message>" <color> <durationSeconds> [priceset:<number>?] [pricepercentage:<number>?]
 
-happyhour end
-Ends the active happy hour.
+priceset? = optional fixed price
+pricepercentage? = optional percentage discount
 
-Loops:
-loop for <count>; <var> {
+**happyhour end**
+Syntax: happyhour end
+
+**Loops**
+Syntax:
+loop for <count>; <varName> {
   <commands>
 }
-Runs the block count times.
-The loop variable starts at 1 and increments each iteration.
+count = number of iterations
+varName = loop variable (starts at 1)
 
-Example Script:
-define title = "Weekend Event"
-message "Starting " .. title
-admin "Weekend Event"
-loop for 2; i {
-  item Egg
-  wait 2
-}
-happyhour "LIMITED TIME!" Gold 300 pricepercentage:20
-wait 10
-happyhour end
-admin end "Weekend Event"
-
-Errors:
+**Errors**
 Unknown or invalid command: <line>
 Execution stops immediately when an error occurs.
 
-Version:
+**Version**
 v14025.50 (beta)
