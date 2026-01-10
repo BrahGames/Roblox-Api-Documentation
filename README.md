@@ -72,12 +72,13 @@ If you want to host event like blizzard, alien etc then you can do so by using `
 EventTypes: `Alien | Blizzard | Lightning | Rainbow`
 Syntax:
 ```
-admin <EventType[string]>
+admin <EventType[string]> [duration]
 ```
 
 Example:
 ```
 admin "Alien"
+admin "Alien" 10
 ```
 
 If you want to end the event then you can do so by 
@@ -114,7 +115,7 @@ Colors: `Green | Gold | Rainbow | Blue | Purple`
 
 Syntax
 ```
-happyhour <"Message"> [durationInSeconds] [Color] [priceset:amount] [pricepercentage:percentageAmount]
+happyhour <"Message"> [Color] [durationInSeconds] [priceset:amount] [pricepercentage:percentageAmount]
 ```
 
 Example:
@@ -143,10 +144,17 @@ loop for count; variable {
 ```
 count is the number, example putting 10 will run loop 10 times and variable stores the current index of the loop.
 
+but the count variable in negative value to make it countdown.
+
 Example:
 ```
 loop for 5; index {
     print "Current: " .. index
+    wait 1
+}
+
+loop for -5; index {
+    print "Countdown: " .. index
     wait 1
 }
 ```
